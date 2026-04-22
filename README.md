@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 
 **Step 2** — add the dep to your app module:
 ```groovy
-implementation 'com.github.yourname:awesomerating-android:0.1.0'
+implementation 'com.github.code-execute-rishi:android-rating-prompt:0.1.0'
 
 // Only if you use Google in-app review:
 implementation 'com.google.android.play:review:2.0.2'

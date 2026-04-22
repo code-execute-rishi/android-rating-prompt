@@ -53,8 +53,8 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.yourname'
-                artifactId = 'awesomerating-android'
+                groupId = 'com.github.code-execute-rishi'
+                artifactId = 'android-rating-prompt'
                 version = '0.1.0'
                 pom {
                     name = 'AwesomeRating Android'
