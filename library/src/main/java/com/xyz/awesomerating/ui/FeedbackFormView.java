@@ -72,13 +72,13 @@ public final class FeedbackFormView extends LinearLayout {
     /** Called by DialogManager after inflation. */
     public void bind(@NonNull RateDialogFragment fragment, @NonNull RatingConfig config) {
         // Title override
-        if (titleView != null && config.feedbackTitleTextRes != 0) {
-            titleView.setText(config.feedbackTitleTextRes);
+        if (titleView != null && config.getFeedbackTitleTextRes() != 0) {
+            titleView.setText(config.getFeedbackTitleTextRes());
         }
 
         // Hint override
-        if (inputLayout != null && config.feedbackHintTextRes != 0) {
-            inputLayout.setHint(getContext().getString(config.feedbackHintTextRes));
+        if (inputLayout != null && config.getFeedbackHintTextRes() != 0) {
+            inputLayout.setHint(getContext().getString(config.getFeedbackHintTextRes()));
         }
 
         // Pre-fill from saved draft (rotation)
@@ -112,8 +112,8 @@ public final class FeedbackFormView extends LinearLayout {
 
         // Send button text override + click
         if (sendButton != null) {
-            if (config.feedbackSendButtonTextRes != 0) {
-                sendButton.setText(config.feedbackSendButtonTextRes);
+            if (config.getFeedbackSendButtonTextRes() != 0) {
+                sendButton.setText(config.getFeedbackSendButtonTextRes());
             }
             sendButton.setEnabled(fragment.getDraftFeedback().trim().length() > 0);
             sendButton.setOnClickListener(v -> submit(fragment, config));
@@ -155,8 +155,8 @@ public final class FeedbackFormView extends LinearLayout {
                 break;
             }
             case CUSTOM: {
-                if (config.feedbackSubmittedListener != null) {
-                    config.feedbackSubmittedListener.onFeedbackSubmitted(text, include, info, rating);
+                if (config.getFeedbackSubmittedListener() != null) {
+                    config.getFeedbackSubmittedListener().onFeedbackSubmitted(text, include, info, rating);
                 } else {
                     RatingLogger.error("FeedbackMode.CUSTOM but listener missing");
                 }

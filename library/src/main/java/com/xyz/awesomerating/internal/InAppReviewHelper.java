@@ -58,8 +58,8 @@ public final class InAppReviewHelper {
                                     Object t2 = a2[0];
                                     boolean ok = (Boolean) t2.getClass().getMethod("isSuccessful").invoke(t2);
                                     PreferenceUtil.onInAppReviewCompleted(activity);
-                                    if (config.inAppReviewListener != null) {
-                                        config.inAppReviewListener.onInAppReviewCompleted(ok);
+                                    if (config.getInAppReviewListener() != null) {
+                                        config.getInAppReviewListener().onInAppReviewCompleted(ok);
                                     }
                                     return null;
                                 });
@@ -81,8 +81,8 @@ public final class InAppReviewHelper {
 
     private static void fail(RatingConfig config, String reason) {
         RatingLogger.warn("In-app review failed: " + reason);
-        if (config.inAppReviewListener != null) {
-            config.inAppReviewListener.onInAppReviewCompleted(false);
+        if (config.getInAppReviewListener() != null) {
+            config.getInAppReviewListener().onInAppReviewCompleted(false);
         }
     }
 }

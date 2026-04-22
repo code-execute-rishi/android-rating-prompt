@@ -40,7 +40,7 @@ public final class ConditionsChecker {
         boolean laterClicked = PreferenceUtil.wasLaterClicked(ctx);
 
         if (laterClicked) {
-            if (!evaluateCustom(config.customConditionToShowAgain, "customConditionToShowAgain")) {
+            if (!evaluateCustom(config.getCustomConditionToShowAgain(), "customConditionToShowAgain")) {
                 return false;
             }
             int needDays = PreferenceUtil.getMinDaysToShowAgain(ctx);
@@ -50,7 +50,7 @@ public final class ConditionsChecker {
                     + " launches=" + launchTimes + "/" + needLaunches + " → " + ok);
             return ok;
         } else {
-            if (!evaluateCustom(config.customCondition, "customCondition")) {
+            if (!evaluateCustom(config.getCustomCondition(), "customCondition")) {
                 return false;
             }
             int needDays = PreferenceUtil.getMinDays(ctx);

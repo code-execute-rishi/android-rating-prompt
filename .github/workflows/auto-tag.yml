@@ -1,0 +1,96 @@
+name: Auto-tag on VERSION change
+
+# Fires on every push to main. Reads /VERSION; if a git tag v{VERSION} does not
+# exist yet, creates + pushes it. release.yml then takes over (building AAR,
+# creating GitHub Release, warming JitPack).
+#
+# Zero-touch deploy loop:
+#   edit VERSION → commit → push → auto-tag → release → JitPack
+#
+# Safe by design:
+#   - ignores push events originating from this workflow (avoid tag→push loop)
+#   - ignores push events on the tag ref itself
+#   - never creates duplicate tags
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - VERSION
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-tag-main
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    name: Create tag if VERSION changed
+    runs-on: ubuntu-latest
+    # Skip if the commit was made by the bot itself (prevents recursion).
+    if: github.event.head_commit.author.email != '41898282+github-actions[bot]@users.noreply.github.com'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read VERSION
+        id: v
+        run: |
+          VERSION="$(cat VERSION | tr -d '[:space:]')"
+          if [[ -z "$VERSION" ]]; then
+            echo "VERSION file is empty" >&2
+            exit 1
+          fi
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$ ]]; then
+            echo "Invalid semver in VERSION: $VERSION" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Resolved VERSION → $VERSION (tag v$VERSION)"
+
+      - name: Check if tag already exists
+        id: tag_exists
+        run: |
+          if git rev-parse "${{ steps.v.outputs.tag }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag ${{ steps.v.outputs.tag }} already exists — no-op"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Tag ${{ steps.v.outputs.tag }} is new — will create"
+          fi
+
+      - name: Configure git identity
+        if: steps.tag_exists.outputs.exists == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Create + push annotated tag
+        if: steps.tag_exists.outputs.exists == 'false'
+        run: |
+          TAG="${{ steps.v.outputs.tag }}"
+          VERSION="${{ steps.v.outputs.version }}"
+          git tag -a "$TAG" -m "Release $TAG (auto-tagged from VERSION file)"
+          git push origin "$TAG"
+          echo "Pushed tag $TAG — release.yml workflow will now fire"
+
+      - name: Emit summary
+        run: |
+          {
+            echo "### Auto-tag result"
+            echo ""
+            echo "- VERSION: \`${{ steps.v.outputs.version }}\`"
+            echo "- Tag: \`${{ steps.v.outputs.tag }}\`"
+            if [[ "${{ steps.tag_exists.outputs.exists }}" == "true" ]]; then
+              echo "- Status: tag already existed, skipped"
+            else
+              echo "- Status: tag created + pushed"
+              echo "- Next: \`release.yml\` is now building AAR and warming JitPack"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

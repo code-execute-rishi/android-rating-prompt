@@ -1,5 +1,10 @@
 name: Bump version + tag
 
+# Manual dispatch alternative to the VERSION-file-driven auto-tag flow.
+# Use this when you want a guided bump from the Actions UI instead of
+# editing VERSION directly. Writes the new version to /VERSION, commits,
+# pushes — which then triggers auto-tag.yml → release.yml.
+
 on:
   workflow_dispatch:
     inputs:
@@ -7,23 +12,13 @@ on:
         description: 'Semver (e.g. 0.2.0 or 1.0.0-beta01). Without the v prefix.'
         required: true
         type: string
-      bump_type:
-        description: 'Bump strategy (ignored if version provided above)'
-        required: false
-        default: 'manual'
-        type: choice
-        options:
-          - manual
-          - patch
-          - minor
-          - major
 
 permissions:
   contents: write
 
 jobs:
   bump:
-    name: Bump + tag + trigger release
+    name: Write VERSION + push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,41 +32,44 @@ jobs:
         run: |
           VERSION="${{ github.event.inputs.version }}"
           if [[ -z "$VERSION" ]]; then
-            echo "Version input required"
+            echo "Version input required" >&2
             exit 1
           fi
           if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$ ]]; then
-            echo "Invalid semver: $VERSION"
+            echo "Invalid semver: $VERSION" >&2
             exit 1
           fi
           if git rev-parse "v$VERSION" >/dev/null 2>&1; then
-            echo "Tag v$VERSION already exists"
+            echo "Tag v$VERSION already exists" >&2
+            exit 1
+          fi
+          CURRENT="$(cat VERSION | tr -d '[:space:]')"
+          if [[ "$CURRENT" == "$VERSION" ]]; then
+            echo "VERSION file already contains $VERSION — nothing to bump" >&2
             exit 1
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-
-      - name: Update version in library/build.gradle
-        run: |
-          VERSION="${{ steps.v.outputs.version }}"
-          sed -i "s/version = '[^']*'/version = '$VERSION'/g" library/build.gradle
-          echo "── Diff ──"
-          git diff library/build.gradle
-          if git diff --quiet library/build.gradle; then
-            echo "build.gradle did not change — version already matches"
-            exit 1
-          fi
+          echo "previous=$CURRENT" >> "$GITHUB_OUTPUT"
 
       - name: Configure git identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit + tag + push
+      - name: Write VERSION + commit + push
         run: |
-          VERSION="${{ steps.v.outputs.version }}"
-          git add library/build.gradle
-          git commit -m "Release v$VERSION"
-          git tag -a "v$VERSION" -m "Release v$VERSION"
+          echo "${{ steps.v.outputs.version }}" > VERSION
+          git add VERSION
+          git commit -m "Bump ${{ steps.v.outputs.previous }} → ${{ steps.v.outputs.version }}"
           git push origin HEAD:main
-          git push origin "v$VERSION"
-          echo "Pushed tag v$VERSION — release.yml workflow will now run"
+          echo "Pushed to main — auto-tag.yml will tag v${{ steps.v.outputs.version }}"
+
+      - name: Emit summary
+        run: |
+          {
+            echo "### Bump complete"
+            echo ""
+            echo "- Previous: \`${{ steps.v.outputs.previous }}\`"
+            echo "- New: \`${{ steps.v.outputs.version }}\`"
+            echo "- Next: \`auto-tag.yml\` will now create \`v${{ steps.v.outputs.version }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"

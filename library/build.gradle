@@ -3,6 +3,10 @@ plugins {
     id 'maven-publish'
 }
 
+// Single source of truth for version — root /VERSION file.
+// Auto-tag workflow tags v{VERSION} on push, release.yml then fires.
+def libraryVersion = rootProject.file('VERSION').text.trim()
+
 android {
     namespace 'com.xyz.awesomerating'
     compileSdk 35
@@ -63,7 +67,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.code-execute-rishi'
                 artifactId = 'android-rating-prompt'
-                version = '0.1.0'
+                version = libraryVersion
                 pom {
                     name = 'AwesomeRating Android'
                     description = 'Customizable rating dialog + in-app review + feedback for Android apps'

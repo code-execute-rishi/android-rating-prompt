@@ -84,6 +84,16 @@ public final class RatingConfig implements Serializable {
     public boolean isDeviceInfoCheckboxDefaultChecked() { return deviceInfoCheckboxDefaultChecked; }
     @StyleRes public int getCustomThemeRes() { return customThemeRes; }
     @DrawableRes public int getIconDrawableRes() { return iconDrawableRes; }
+    @StringRes public int getTitleTextRes() { return titleTextRes; }
+    @StringRes public int getMessageTextRes() { return messageTextRes; }
+    @StringRes public int getRateNowButtonTextRes() { return rateNowButtonTextRes; }
+    @StringRes public int getRateLaterButtonTextRes() { return rateLaterButtonTextRes; }
+    @StringRes public int getRateNeverButtonTextRes() { return rateNeverButtonTextRes; }
+    @StringRes public int getFeedbackTitleTextRes() { return feedbackTitleTextRes; }
+    @StringRes public int getFeedbackHintTextRes() { return feedbackHintTextRes; }
+    @StringRes public int getFeedbackSendButtonTextRes() { return feedbackSendButtonTextRes; }
+    @StringRes public int getStoreTitleTextRes() { return storeTitleTextRes; }
+    @StringRes public int getStoreMessageTextRes() { return storeMessageTextRes; }
     public boolean isShowOnlyFullStars() { return showOnlyFullStars; }
     public boolean isCancelable() { return cancelable; }
     public boolean isShowRateNeverButton() { return showRateNeverButton; }
@@ -94,6 +104,16 @@ public final class RatingConfig implements Serializable {
     @ColorInt @Nullable public Integer getPositiveColorOverride() { return positiveColorOverride; }
     @ColorInt @Nullable public Integer getNegativeColorOverride() { return negativeColorOverride; }
     @ColorInt @Nullable public Integer getStarFillColorOverride() { return starFillColorOverride; }
+    @Nullable public Condition getCustomCondition() { return customCondition; }
+    @Nullable public Condition getCustomConditionToShowAgain() { return customConditionToShowAgain; }
+    @Nullable public ConfirmClickListener getConfirmClickListener() { return confirmClickListener; }
+    @Nullable public RateClickListener getRateNowClickListener() { return rateNowClickListener; }
+    @Nullable public RateClickListener getAdditionalRateNowClickListener() { return additionalRateNowClickListener; }
+    @Nullable public RateClickListener getRateLaterClickListener() { return rateLaterClickListener; }
+    @Nullable public RateClickListener getRateNeverClickListener() { return rateNeverClickListener; }
+    @Nullable public FeedbackSubmittedListener getFeedbackSubmittedListener() { return feedbackSubmittedListener; }
+    @Nullable public InAppReviewListener getInAppReviewListener() { return inAppReviewListener; }
+    @Nullable public Runnable getCancelListener() { return cancelListener; }
 
     /** Simple lambda-friendly condition interface. */
     public interface Condition extends Serializable {

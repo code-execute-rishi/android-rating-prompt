@@ -123,8 +123,8 @@ public final class DialogManager {
         float rating = fragment.getRating();
         if (rating <= 0) return;
 
-        if (config.confirmClickListener != null) {
-            config.confirmClickListener.onConfirm(rating);
+        if (config.getConfirmClickListener() != null) {
+            config.getConfirmClickListener().onConfirm(rating);
         }
 
         boolean aboveThreshold = rating >= config.getRatingThreshold().asFloat();
@@ -159,21 +159,21 @@ public final class DialogManager {
         applyIcon(view.findViewById(R.id.ar_icon), config);
         TextView title = view.findViewById(R.id.ar_title);
         TextView message = view.findViewById(R.id.ar_message);
-        if (title != null && config.storeTitleTextRes != 0) title.setText(config.storeTitleTextRes);
-        if (message != null && config.storeMessageTextRes != 0) message.setText(config.storeMessageTextRes);
+        if (title != null && config.getStoreTitleTextRes() != 0) title.setText(config.getStoreTitleTextRes());
+        if (message != null && config.getStoreMessageTextRes() != 0) message.setText(config.getStoreMessageTextRes());
 
         MaterialButton rateNow = view.findViewById(R.id.ar_rate_now_button);
         if (rateNow != null) {
-            if (config.rateNowButtonTextRes != 0) rateNow.setText(config.rateNowButtonTextRes);
+            if (config.getRateNowButtonTextRes() != 0) rateNow.setText(config.getRateNowButtonTextRes());
             rateNow.setOnClickListener(v -> {
                 PreferenceUtil.setDialogAgreed(fragment.requireContext());
-                if (config.rateNowClickListener != null) {
-                    config.rateNowClickListener.onClick();
+                if (config.getRateNowClickListener() != null) {
+                    config.getRateNowClickListener().onClick();
                 } else {
                     FeedbackUtils.openPlayStoreListing(fragment.requireContext());
                 }
-                if (config.additionalRateNowClickListener != null) {
-                    config.additionalRateNowClickListener.onClick();
+                if (config.getAdditionalRateNowClickListener() != null) {
+                    config.getAdditionalRateNowClickListener().onClick();
                 }
                 fragment.dismissAllowingStateLoss();
             });
@@ -213,12 +213,12 @@ public final class DialogManager {
     private static void wireLaterAndNever(RateDialogFragment fragment, View root, RatingConfig config) {
         View later = root.findViewById(R.id.ar_later_button);
         if (later != null) {
-            if (later instanceof TextView && config.rateLaterButtonTextRes != 0) {
-                ((TextView) later).setText(config.rateLaterButtonTextRes);
+            if (later instanceof TextView && config.getRateLaterButtonTextRes() != 0) {
+                ((TextView) later).setText(config.getRateLaterButtonTextRes());
             }
             later.setOnClickListener(v -> {
                 PreferenceUtil.onLaterClicked(fragment.requireContext());
-                if (config.rateLaterClickListener != null) config.rateLaterClickListener.onClick();
+                if (config.getRateLaterClickListener() != null) config.getRateLaterClickListener().onClick();
                 fragment.dismissAllowingStateLoss();
             });
         }
@@ -230,12 +230,12 @@ public final class DialogManager {
                     && laterClicks >= config.getCountOfLaterClicksBeforeNeverButton();
             never.setVisibility(visible ? View.VISIBLE : View.GONE);
             if (visible) {
-                if (never instanceof TextView && config.rateNeverButtonTextRes != 0) {
-                    ((TextView) never).setText(config.rateNeverButtonTextRes);
+                if (never instanceof TextView && config.getRateNeverButtonTextRes() != 0) {
+                    ((TextView) never).setText(config.getRateNeverButtonTextRes());
                 }
                 never.setOnClickListener(v -> {
                     PreferenceUtil.setDoNotShowAgain(fragment.requireContext());
-                    if (config.rateNeverClickListener != null) config.rateNeverClickListener.onClick();
+                    if (config.getRateNeverClickListener() != null) config.getRateNeverClickListener().onClick();
                     fragment.dismissAllowingStateLoss();
                 });
             }
@@ -258,16 +258,16 @@ public final class DialogManager {
     }
 
     private static void applyTitle(@Nullable TextView view, RatingConfig config) {
-        if (view == null || config.titleTextRes == 0) return;
-        view.setText(config.titleTextRes);
+        if (view == null || config.getTitleTextRes() == 0) return;
+        view.setText(config.getTitleTextRes());
     }
 
     private static void applyMessage(@Nullable TextView view, RatingConfig config) {
         if (view == null) return;
-        if (config.messageTextRes == 0) {
+        if (config.getMessageTextRes() == 0) {
             view.setVisibility(View.GONE);
         } else {
-            view.setText(config.messageTextRes);
+            view.setText(config.getMessageTextRes());
             view.setVisibility(View.VISIBLE);
         }
     }

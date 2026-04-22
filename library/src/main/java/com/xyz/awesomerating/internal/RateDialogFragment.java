@@ -101,7 +101,7 @@ public final class RateDialogFragment extends BottomSheetDialogFragment {
         super.onCancel(dialog);
         RatingLogger.info("Rating dialog cancelled; treating as Later click");
         PreferenceUtil.onLaterClicked(requireContext());
-        if (config.cancelListener != null) config.cancelListener.run();
+        if (config.getCancelListener() != null) config.getCancelListener().run();
     }
 
     // ─── Step helpers used by DialogManager ───
@@ -111,14 +111,14 @@ public final class RateDialogFragment extends BottomSheetDialogFragment {
         DialogManager.render(this, contentHost, config, step);
     }
 
-    void setRating(float rating) { this.rating = rating; }
-    float getRating() { return rating; }
+    public void setRating(float rating) { this.rating = rating; }
+    public float getRating() { return rating; }
 
-    void setDraftFeedback(String s) { this.draftFeedback = s == null ? "" : s; }
-    String getDraftFeedback() { return draftFeedback; }
+    public void setDraftFeedback(String s) { this.draftFeedback = s == null ? "" : s; }
+    public String getDraftFeedback() { return draftFeedback; }
 
-    void setIncludeDevice(boolean v) { this.includeDevice = v; }
-    boolean isIncludeDevice() { return includeDevice; }
+    public void setIncludeDevice(boolean v) { this.includeDevice = v; }
+    public boolean isIncludeDevice() { return includeDevice; }
 
     // ─── Theme plumbing ───
 
