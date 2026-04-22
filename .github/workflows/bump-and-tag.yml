@@ -1,0 +1,77 @@
+name: Bump version + tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semver (e.g. 0.2.0 or 1.0.0-beta01). Without the v prefix.'
+        required: true
+        type: string
+      bump_type:
+        description: 'Bump strategy (ignored if version provided above)'
+        required: false
+        default: 'manual'
+        type: choice
+        options:
+          - manual
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    name: Bump + tag + trigger release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate version
+        id: v
+        run: |
+          VERSION="${{ github.event.inputs.version }}"
+          if [[ -z "$VERSION" ]]; then
+            echo "Version input required"
+            exit 1
+          fi
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$ ]]; then
+            echo "Invalid semver: $VERSION"
+            exit 1
+          fi
+          if git rev-parse "v$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Update version in library/build.gradle
+        run: |
+          VERSION="${{ steps.v.outputs.version }}"
+          sed -i "s/version = '[^']*'/version = '$VERSION'/g" library/build.gradle
+          echo "── Diff ──"
+          git diff library/build.gradle
+          if git diff --quiet library/build.gradle; then
+            echo "build.gradle did not change — version already matches"
+            exit 1
+          fi
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit + tag + push
+        run: |
+          VERSION="${{ steps.v.outputs.version }}"
+          git add library/build.gradle
+          git commit -m "Release v$VERSION"
+          git tag -a "v$VERSION" -m "Release v$VERSION"
+          git push origin HEAD:main
+          git push origin "v$VERSION"
+          echo "Pushed tag v$VERSION — release.yml workflow will now run"

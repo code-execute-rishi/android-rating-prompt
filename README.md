@@ -1,5 +1,10 @@
 # AwesomeRating Android
 
+[![CI](https://github.com/code-execute-rishi/android-rating-prompt/actions/workflows/ci.yml/badge.svg)](https://github.com/code-execute-rishi/android-rating-prompt/actions/workflows/ci.yml)
+[![Release](https://github.com/code-execute-rishi/android-rating-prompt/actions/workflows/release.yml/badge.svg)](https://github.com/code-execute-rishi/android-rating-prompt/actions/workflows/release.yml)
+[![](https://jitpack.io/v/code-execute-rishi/android-rating-prompt.svg)](https://jitpack.io/#code-execute-rishi/android-rating-prompt)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+
 Java + XML Android rating dialog library. Three UX variants, Material 3, light + dark themes,
 built-in email feedback with opt-in device info. Distributable via JitPack.
 
