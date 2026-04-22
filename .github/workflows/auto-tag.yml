@@ -75,10 +75,23 @@ jobs:
         if: steps.tag_exists.outputs.exists == 'false'
         run: |
           TAG="${{ steps.v.outputs.tag }}"
-          VERSION="${{ steps.v.outputs.version }}"
           git tag -a "$TAG" -m "Release $TAG (auto-tagged from VERSION file)"
           git push origin "$TAG"
-          echo "Pushed tag $TAG — release.yml workflow will now fire"
+          echo "Pushed tag $TAG"
+
+      - name: Dispatch release.yml
+        # Tag pushes made with the default GITHUB_TOKEN do NOT trigger workflows
+        # listening on `push: tags:`. workflow_dispatch is the documented exception,
+        # so we explicitly fire release.yml here.
+        if: steps.tag_exists.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.v.outputs.tag }}"
+          gh workflow run release.yml \
+            --ref main \
+            -f tag="$TAG"
+          echo "Dispatched release.yml with tag=$TAG"
 
       - name: Emit summary
         run: |
