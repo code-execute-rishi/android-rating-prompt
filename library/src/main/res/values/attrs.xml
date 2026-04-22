@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Theme attributes exposed by the library. Host app themes can override these to brand
+      the rating dialog. All optional — sensible defaults inherit from MaterialComponents.
+    -->
+    <attr name="arPrimaryColor" format="color" />
+    <attr name="arOnPrimaryColor" format="color" />
+    <attr name="arPositiveColor" format="color" />
+    <attr name="arNegativeColor" format="color" />
+    <attr name="arStarFillColor" format="color" />
+    <attr name="arSheetBackgroundColor" format="color" />
+    <attr name="arSurfaceVariantColor" format="color" />
+    <attr name="arTextPrimaryColor" format="color" />
+    <attr name="arTextSecondaryColor" format="color" />
+    <attr name="arEditTextBackgroundColor" format="color" />
+    <attr name="arDragHandleColor" format="color" />
+
+    <attr name="arCornerRadiusSheet" format="dimension" />
+    <attr name="arCornerRadiusButton" format="dimension" />
+    <attr name="arCornerRadiusEditText" format="dimension" />
+
+    <attr name="arHeadlineFontFamily" format="reference" />
+    <attr name="arBodyFontFamily" format="reference" />
+
+    <attr name="arIconDrawable" format="reference" />
+</resources>

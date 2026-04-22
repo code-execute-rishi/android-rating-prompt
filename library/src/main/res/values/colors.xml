@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light-theme defaults. See values-night for dark overrides. -->
+    <color name="ar_primary_light">#7C5CFF</color>
+    <color name="ar_on_primary_light">#FFFFFF</color>
+    <color name="ar_positive_light">#22C55E</color>
+    <color name="ar_negative_light">#F97316</color>
+    <color name="ar_star_fill_light">#F59E0B</color>
+    <color name="ar_sheet_bg_light">#FFFFFF</color>
+    <color name="ar_surface_variant_light">#F4F4F8</color>
+    <color name="ar_text_primary_light">#0F0F14</color>
+    <color name="ar_text_secondary_light">#5B5B6B</color>
+    <color name="ar_edittext_bg_light">#F7F7FB</color>
+    <color name="ar_drag_handle_light">#E5E5EC</color>
+
+    <!-- Tints for positive/negative cards (binary variant) -->
+    <color name="ar_positive_card_bg_light">#ECFDF5</color>
+    <color name="ar_negative_card_bg_light">#FFF7ED</color>
+</resources>

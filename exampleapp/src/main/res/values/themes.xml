@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.AwesomeRatingDemo" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">#7C5CFF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- Re-use library attrs so dialog picks up brand tokens automatically -->
+        <item name="arPrimaryColor">#7C5CFF</item>
+        <item name="arPositiveColor">#22C55E</item>
+        <item name="arNegativeColor">#F97316</item>
+    </style>
+</resources>

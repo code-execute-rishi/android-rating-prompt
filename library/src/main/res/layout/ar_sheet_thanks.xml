@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingStart="@dimen/ar_margin_big"
+    android:paddingEnd="@dimen/ar_margin_big"
+    android:paddingTop="@dimen/ar_margin_xbig"
+    android:paddingBottom="@dimen/ar_margin_xbig">
+
+    <ImageView
+        android:id="@+id/ar_icon"
+        android:layout_width="@dimen/ar_icon_size"
+        android:layout_height="@dimen/ar_icon_size"
+        android:src="@drawable/ar_ic_heart"
+        android:tint="?attr/arPositiveColor"
+        android:contentDescription="@null"
+        android:layout_marginBottom="@dimen/ar_margin_normal"/>
+
+    <TextView
+        style="@style/AR.TextAppearance.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ar_thanks_title"
+        android:gravity="center"/>
+</LinearLayout>

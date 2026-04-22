@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Rating screen — shared -->
+    <string name="ar_title_overview">How are we doing?</string>
+    <string name="ar_title_overview_emoji">How\'s your vibe?</string>
+    <string name="ar_title_overview_binary">Quick gut check</string>
+    <string name="ar_message_overview">Your rating shapes the next update.</string>
+    <string name="ar_button_confirm">Confirm</string>
+    <string name="ar_button_rate_later">Remind me later</string>
+    <string name="ar_button_rate_never">Never ask again</string>
+
+    <!-- Store CTA -->
+    <string name="ar_title_store">Enjoying the app?</string>
+    <string name="ar_message_store">Mind leaving a rating on Play Store? It takes 5 seconds.</string>
+    <string name="ar_button_rate_now">Rate on Play Store</string>
+
+    <!-- Feedback form -->
+    <string name="ar_feedback_title">Help us get better</string>
+    <string name="ar_feedback_subtitle">We\'d love to understand what went wrong.</string>
+    <string name="ar_feedback_hint">Tell us what\'s bugging you… (crashes, missing features, UX pain)</string>
+    <string name="ar_feedback_send_button">Send feedback</string>
+    <string name="ar_feedback_not_now_button">Not now</string>
+    <string name="ar_feedback_back">Back</string>
+    <string name="ar_include_device_info">Include device info</string>
+    <string name="ar_include_device_info_sub">Android version, model, app version — helps us reproduce bugs</string>
+    <string name="ar_feedback_pick_mail_app">Send feedback via…</string>
+    <string name="ar_feedback_no_mail_app">No email app found on this device.</string>
+
+    <!-- Emoji variant labels -->
+    <string name="ar_emoji_1">Bad</string>
+    <string name="ar_emoji_2">Meh</string>
+    <string name="ar_emoji_3">Okay</string>
+    <string name="ar_emoji_4">Good</string>
+    <string name="ar_emoji_5">Amazing</string>
+    <string name="ar_emoji_1_char">😔</string>
+    <string name="ar_emoji_2_char">😐</string>
+    <string name="ar_emoji_3_char">🙂</string>
+    <string name="ar_emoji_4_char">😄</string>
+    <string name="ar_emoji_5_char">🤩</string>
+
+    <!-- Binary variant -->
+    <string name="ar_binary_love_title">Love it</string>
+    <string name="ar_binary_love_sub">Made my day</string>
+    <string name="ar_binary_needs_title">Needs work</string>
+    <string name="ar_binary_needs_sub">Let\'s talk</string>
+    <string name="ar_binary_divider">or</string>
+    <string name="ar_binary_microcopy">Takes one tap. We actually read every response.</string>
+
+    <!-- Thanks -->
+    <string name="ar_thanks_title">Thanks for letting us know.</string>
+
+    <!-- Content descriptions -->
+    <string name="ar_cd_app_icon">App icon</string>
+    <string name="ar_cd_rating_bar">Rating bar</string>
+    <string name="ar_cd_back">Back</string>
+</resources>

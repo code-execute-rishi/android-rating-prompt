@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ar_margin_small">8dp</dimen>
+    <dimen name="ar_margin_normal">16dp</dimen>
+    <dimen name="ar_margin_big">24dp</dimen>
+    <dimen name="ar_margin_xbig">32dp</dimen>
+
+    <dimen name="ar_corner_sheet">24dp</dimen>
+    <dimen name="ar_corner_button">12dp</dimen>
+    <dimen name="ar_corner_edittext">12dp</dimen>
+    <dimen name="ar_corner_card">16dp</dimen>
+    <dimen name="ar_corner_chip">8dp</dimen>
+
+    <dimen name="ar_min_touch_size">48dp</dimen>
+    <dimen name="ar_button_height">56dp</dimen>
+    <dimen name="ar_icon_size">56dp</dimen>
+    <dimen name="ar_icon_size_large">72dp</dimen>
+
+    <dimen name="ar_emoji_chip_size">56dp</dimen>
+    <dimen name="ar_emoji_size">32sp</dimen>
+
+    <dimen name="ar_drag_handle_width">40dp</dimen>
+    <dimen name="ar_drag_handle_height">4dp</dimen>
+
+    <dimen name="ar_feedback_edittext_height">140dp</dimen>
+
+    <dimen name="ar_text_headline">22sp</dimen>
+    <dimen name="ar_text_headline_large">24sp</dimen>
+    <dimen name="ar_text_body">14sp</dimen>
+    <dimen name="ar_text_body_small">12sp</dimen>
+    <dimen name="ar_text_microcopy">11sp</dimen>
+</resources>

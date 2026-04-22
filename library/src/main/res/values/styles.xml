@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default library theme. Inherits Material3 so host apps get the right widget styles. -->
+    <style name="Theme.AwesomeRating" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="arPrimaryColor">@color/ar_primary_light</item>
+        <item name="arOnPrimaryColor">@color/ar_on_primary_light</item>
+        <item name="arPositiveColor">@color/ar_positive_light</item>
+        <item name="arNegativeColor">@color/ar_negative_light</item>
+        <item name="arStarFillColor">@color/ar_star_fill_light</item>
+        <item name="arSheetBackgroundColor">@color/ar_sheet_bg_light</item>
+        <item name="arSurfaceVariantColor">@color/ar_surface_variant_light</item>
+        <item name="arTextPrimaryColor">@color/ar_text_primary_light</item>
+        <item name="arTextSecondaryColor">@color/ar_text_secondary_light</item>
+        <item name="arEditTextBackgroundColor">@color/ar_edittext_bg_light</item>
+        <item name="arDragHandleColor">@color/ar_drag_handle_light</item>
+        <item name="arCornerRadiusSheet">@dimen/ar_corner_sheet</item>
+        <item name="arCornerRadiusButton">@dimen/ar_corner_button</item>
+        <item name="arCornerRadiusEditText">@dimen/ar_corner_edittext</item>
+    </style>
+
+    <!-- Text styles -->
+    <style name="AR.TextAppearance.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">@dimen/ar_text_headline</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/arTextPrimaryColor</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <style name="AR.TextAppearance.HeadlineLarge" parent="AR.TextAppearance.Headline">
+        <item name="android:textSize">@dimen/ar_text_headline_large</item>
+    </style>
+
+    <style name="AR.TextAppearance.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">@dimen/ar_text_body</item>
+        <item name="android:textColor">?attr/arTextSecondaryColor</item>
+    </style>
+
+    <style name="AR.TextAppearance.Microcopy" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">@dimen/ar_text_microcopy</item>
+        <item name="android:textColor">?attr/arTextSecondaryColor</item>
+    </style>
+
+    <!-- Primary button — inherits Material button; colorizes via theme attr -->
+    <style name="AR.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/ar_button_height</item>
+        <item name="cornerRadius">?attr/arCornerRadiusButton</item>
+        <item name="backgroundTint">?attr/arPrimaryColor</item>
+        <item name="android:textColor">?attr/arOnPrimaryColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AR.Button.Ghost" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textColor">?attr/arTextSecondaryColor</item>
+    </style>
+
+    <!-- Filled EditText with rounded corners. Consumer can override via ?attr. -->
+    <style name="AR.TextField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxBackgroundColor">?attr/arEditTextBackgroundColor</item>
+        <item name="boxStrokeColor">?attr/arPrimaryColor</item>
+        <item name="boxCornerRadiusTopStart">@dimen/ar_corner_edittext</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/ar_corner_edittext</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/ar_corner_edittext</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/ar_corner_edittext</item>
+        <item name="counterEnabled">true</item>
+        <item name="counterMaxLength">500</item>
+        <item name="hintTextColor">?attr/arTextSecondaryColor</item>
+    </style>
+</resources>

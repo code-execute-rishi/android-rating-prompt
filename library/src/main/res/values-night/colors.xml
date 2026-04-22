@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark-theme overrides. Keys reference the same names as values/colors.xml -->
+    <color name="ar_primary_light">#A48BFF</color>
+    <color name="ar_on_primary_light">#FFFFFF</color>
+    <color name="ar_positive_light">#4ADE80</color>
+    <color name="ar_negative_light">#FB923C</color>
+    <color name="ar_star_fill_light">#FBBF24</color>
+    <color name="ar_sheet_bg_light">#1F1F28</color>
+    <color name="ar_surface_variant_light">#2A2A34</color>
+    <color name="ar_text_primary_light">#F4F4F6</color>
+    <color name="ar_text_secondary_light">#9A9AA8</color>
+    <color name="ar_edittext_bg_light">#15151C</color>
+    <color name="ar_drag_handle_light">#3A3A48</color>
+
+    <color name="ar_positive_card_bg_light">#152B1F</color>
+    <color name="ar_negative_card_bg_light">#2B1E12</color>
+</resources>

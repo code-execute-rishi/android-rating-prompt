@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.xyz.awesomerating'
+    compileSdk 35
+    resourcePrefix 'ar_'
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 35
+        consumerProguardFiles 'consumer-rules.pro'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.fragment:fragment:1.8.5'
+    implementation 'androidx.annotation:annotation:1.9.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    // Play Core In-App Review. compileOnly so host can skip if not using.
+    compileOnly 'com.google.android.play:review:2.0.2'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+}
+
+// JitPack publishing
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.yourname'
+                artifactId = 'awesomerating-android'
+                version = '0.1.0'
+                pom {
+                    name = 'AwesomeRating Android'
+                    description = 'Customizable rating dialog + in-app review + feedback for Android apps'
+                    licenses {
+                        license {
+                            name = 'Apache License 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

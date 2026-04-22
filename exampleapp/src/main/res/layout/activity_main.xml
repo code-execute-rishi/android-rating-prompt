@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AwesomeRating Demo"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a variant — every tap opens dialog (debug=true)"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="32dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_emoji"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            android:text="Emoji Mood Picker"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_stars"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            android:text="Progressive Stars"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_binary"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            android:text="Binary Love / Needs work"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_custom_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:text="Custom feedback callback"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_in_app_review"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:text="Google In-App Review"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_branded"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:text="Custom-branded colors + icon"/>
+
+    </LinearLayout>
+</ScrollView>
