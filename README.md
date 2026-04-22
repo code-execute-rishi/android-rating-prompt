@@ -84,7 +84,7 @@ AwesomeRating.with(this)
 
 Theme overlay:
 ```xml
-<style name="MyApp.RatingTheme" parent="Theme.AwesomeRating">
+<style name="MyApp.RatingTheme" parent="ArTheme.AwesomeRating">
     <item name="arPrimaryColor">@color/brand</item>
     <item name="arCornerRadiusSheet">32dp</item>
     <item name="arHeadlineFontFamily">@font/my_display</item>

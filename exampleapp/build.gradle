@@ -3,38 +3,38 @@ plugins {
 }
 
 android {
-    namespace 'com.xyz.awesomerating.example'
-    compileSdk 35
+    namespace = 'com.xyz.awesomerating.example'
+    compileSdk = 37
 
     defaultConfig {
-        applicationId 'com.xyz.awesomerating.example'
-        minSdk 21
-        targetSdk 35
-        versionCode 1
-        versionName '0.1.0'
+        applicationId = 'com.xyz.awesomerating.example'
+        minSdk = 21
+        targetSdk = 37
+        versionCode = 1
+        versionName = '0.1.0'
     }
 
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
     implementation project(':library')
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
     // Only include Play Core in apps that use in-app review
     implementation 'com.google.android.play:review:2.0.2'
 }

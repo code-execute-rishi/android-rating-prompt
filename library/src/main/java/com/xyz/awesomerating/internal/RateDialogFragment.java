@@ -125,7 +125,7 @@ public final class RateDialogFragment extends BottomSheetDialogFragment {
     private Context themedContext(Context base) {
         int themeRes = config.getCustomThemeRes() != 0
                 ? config.getCustomThemeRes()
-                : R.style.Theme_AwesomeRating;
+                : R.style.ArTheme_AwesomeRating;
         return new ContextThemeWrapper(base, themeRes);
     }
 

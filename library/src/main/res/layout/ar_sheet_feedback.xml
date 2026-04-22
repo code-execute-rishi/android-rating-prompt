@@ -22,7 +22,7 @@
         android:layout_height="@dimen/ar_icon_size"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/ar_ic_heart_wrench"
-        android:tint="?attr/arNegativeColor"
+        app:tint="?attr/arNegativeColor"
         android:layout_marginBottom="@dimen/ar_margin_normal"
         android:contentDescription="@null"/>
 

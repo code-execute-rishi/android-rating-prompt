@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default library theme. Inherits Material3 so host apps get the right widget styles. -->
-    <style name="Theme.AwesomeRating" parent="Theme.Material3.DayNight.BottomSheetDialog">
+    <style name="ArTheme.AwesomeRating" parent="Theme.Material3.DayNight.BottomSheetDialog">
         <item name="arPrimaryColor">@color/ar_primary_light</item>
         <item name="arOnPrimaryColor">@color/ar_on_primary_light</item>
         <item name="arPositiveColor">@color/ar_positive_light</item>

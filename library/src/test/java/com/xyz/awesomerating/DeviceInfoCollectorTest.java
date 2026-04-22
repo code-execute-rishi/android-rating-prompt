@@ -17,10 +17,12 @@ import com.xyz.awesomerating.model.DeviceInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.util.Locale;
 
 @RunWith(RobolectricTestRunner.class)
+@Config(sdk = 35)
 public class DeviceInfoCollectorTest {
     @Test
     public void collectIncludesDeviceAndAppMetadata() throws Exception {
