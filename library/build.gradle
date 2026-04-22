@@ -41,7 +41,7 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.fragment:fragment:1.8.5'
+    implementation 'androidx.fragment:fragment:1.8.9'
     implementation 'androidx.annotation:annotation:1.9.1'
     implementation 'com.google.android.material:material:1.12.0'
     // Play Core In-App Review. compileOnly so host can skip if not using.
